@@ -9,7 +9,11 @@ server. Or you can just use it as a production-ready ``runserver`` substitute.
 Installation
 ============
 
-The recommended way to install is via `pip`_ from within a `virtualenv`_.::
+The quickest way to install is via `pip`_ from within a `virtualenv`_.::
+
+    pip install https://github.com/rudeb0t/tornadio2go/archive/master.zip#egg=TornadIO2Go
+
+Alternatively, you can opt to use an "editable" installation::
 
     pip install -e https://github.com/rudeb0t/tornadio2go.git#egg=TornadIO2Go
 
@@ -19,13 +23,13 @@ Quick Start
 Add ``tornadio2go`` to your ``INSTALLED_APPS`` and then run ``syncdb``. This
 will install the models used by TornadIO2Go. Create your
 ``tornadio2.SocketConnection`` subclass and write your event handlers as
-usual. Then add the following to your ``settings.py``:::
+usual. Then add the following to your ``settings.py``::
 
     TORNADIO2GO = {
         'SOCKETCONNECTION_CLASS': 'path.to.socketConnectionClass'
     }
 
-Then from the command line, start the TornadIO2 server:::
+Then from the command line, start the TornadIO2 server::
 
     python manage.py runtornadio2
 
@@ -37,17 +41,17 @@ Django Settings
 All of TornadIO2Go's settings are found in the Django setting ``TORNADIO2GO``.
 This is a simple Python ``dict``. Available settings, all of them are optional:
 
-    * ``SOCKETCONNECTION_CLASS`` - this should be the complete path to the
-      ``tornadio2.SocketConnection`` subclass. If this is not specified,
-      ``runtornadio2`` will run your Django project in a Tornado web server.
+* ``SOCKETCONNECTION_CLASS`` - this should be the complete path to the
+  ``tornadio2.SocketConnection`` subclass. If this is not specified,
+  ``runtornadio2`` will run your Django project in a Tornado web server.
 
-    * ``USER_SETTINGS`` - this is a ``dict`` containing options that should be
-      when creating a new ``tornadio2.router.TornadioRouter`` instance. This
-      is only used if you specify ``SOCKETCONNECTION_CLASS``.
+* ``USER_SETTINGS`` - this is a ``dict`` containing options that should be
+  when creating a new ``tornadio2.router.TornadioRouter`` instance. This is
+  only used if you specify ``SOCKETCONNECTION_CLASS``.
 
-    * ``TORNADO_OPTIONS`` - this is a ``dict`` of all the options that you
-      wish to use for the ``tornado.httpserver.HTTPServer`` instance that will
-      be created. See `HTTPServer`_ documentation.
+* ``TORNADO_OPTIONS`` - this is a ``dict`` of all the options that you wish to
+  use for the ``tornado.httpserver.HTTPServer`` instance that will be created.
+  See `HTTPServer`_ documentation.
 
 Command Line Options
 ====================
