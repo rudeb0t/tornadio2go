@@ -6,7 +6,27 @@ except ImportError:
 from django.db import models
 
 class TornadioClientManager(models.Manager):
+    '''
+    Custom Manager class for TornadioClient models.
+    '''
     def broadcast(self, active_connection, event, data=None, omit_sender=False):
+        '''
+        Broadcast a message to all currently connected clients.
+
+        `active_connection`
+            The connection to be used for sending the broadcast event.
+
+        `event`
+            Message or event name to be sent to all connected clients.
+
+        `data`
+            Free-form data to be sent along with the message.
+
+        `omit_sender`
+            Set to ``True`` to send the message back to the client connected to
+            `active_connection`.
+
+        '''
         server = active_connection.session.server
         for client in self.get_query_set().all():
             session = server.get_session(client.session_id)

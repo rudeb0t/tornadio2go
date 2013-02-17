@@ -1,0 +1,14 @@
+{% load staticfiles %}
+<html>
+  <head>
+    <script src="{% static "js/underscore-min.js" %}"></script>
+    <script src="{% static "js/jquery-1.9.0.min.js" %}"></script>
+    <script src="{% static "js/socket.io.js" %}"></script>
+    <script src="{% static "js/main.js" %}"></script>
+  </head>
+  <body>
+    <button id="clear">Clear canvas</button><span>Welcome to the simple Draw app based on tornadio2. Click and drag on the white paper below</span>
+    <div id="debug-bar"></div><div id="latency-info"></div>
+    <canvas id="canvas" width="100" height="100"></canvas>
+  </body>
+</html>
