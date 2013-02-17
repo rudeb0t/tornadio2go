@@ -13,3 +13,4 @@ doctrees
 .coverage
 dist
 build
+*.db
