@@ -9,7 +9,8 @@ setup(
     packages=['tornadio2go', 'tornadio2go.management', 'tornadio2go.management.commands'],
     url='https://github.com/rudeb0t/tornadio2go',
     license='LICENSE.txt',
-    description=open('README.rst').read(),
+    description='Seamlessly run your Django and TornadIO2 project inside Tornado. Like.A.Boss.',
+    long_description=open('README.rst').read(),
     install_requires=[
         'Django >= 1.4.0',
         'TornadIO2 >= 0.0.4'
