@@ -1,1 +1,1 @@
-v1.0.0 - Initial release.
+v1.0.0, 2013/02/07 - Initial release.
