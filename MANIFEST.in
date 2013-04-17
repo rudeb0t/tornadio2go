@@ -1,2 +1,2 @@
-include *.txt *.rst
+include distribute_setup.py *.txt *.rst
 recursive-include examples *.py *.js *.html *.css
