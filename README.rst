@@ -53,6 +53,9 @@ This is a simple Python ``dict``. Available settings, all of them are optional:
   use for the ``tornado.httpserver.HTTPServer`` instance that will be created.
   See `HTTPServer`_ documentation.
 
+* ``TORNADO_HANDLERS`` - this is a list of handlers that you want to be added
+  before the `FallbackHandler`.
+  
 Command Line Options
 ====================
 
@@ -71,8 +74,17 @@ detect the number of available CPU cores and fork the appropriate number of
 processes. Set to any number greater than one to fork a specific number of
 processes.
 
+Running With supervisord
+========================
+
+In order to run tornadio2go under `supervisord`_ you must use the `--noreload`
+flag in the command parameter for the ini section of your configuration file.
+`supervisord` does not like it when its supervised programs do a `fork()` and
+the reloader does just that.
+
 .. _TornadIO2: https://github.com/MrJoes/tornadio2
 .. _Tornado: http://www.tornadoweb.org/
 .. _pip: http://pypi.python.org/pypi/pip
 .. _virtualenv: http://pypi.python.org/pypi/virtualenv
 .. _HTTPServer: http://www.tornadoweb.org/documentation/httpserver.html#http-server
+.. _supervisord: http://supervisord.org/

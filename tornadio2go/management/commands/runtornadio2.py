@@ -68,6 +68,7 @@ class Command(RunServerCommand):
         tornadio2_connection_class = tornadio2go_settings.get('SOCKETCONNECTION_CLASS', None)
         tornadio2_user_settings = tornadio2go_settings.get('USER_SETTINGS', dict())
         tornado_options = tornadio2go_settings.get('TORNADO_OPTIONS', dict())
+        tornado_handlers = list(tornadio2go_settings.get('TORNADO_HANDLERS', []))
 
         TornadioConnection = None
         if tornadio2_connection_class:
@@ -124,7 +125,7 @@ class Command(RunServerCommand):
             # HTTPServer.start(num_process) to fail if num_process is not 1. So
             # we set up our app and handlers here.
             wsgi_app = tornado.wsgi.WSGIContainer(django.core.handlers.wsgi.WSGIHandler())
-            handlers = [
+            handlers = tornado_handlers + [
                 ('.*', tornado.web.FallbackHandler, dict(fallback=wsgi_app))
             ]
             if TornadioConnection:
