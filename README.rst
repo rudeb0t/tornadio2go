@@ -78,9 +78,33 @@ Running With supervisord
 ========================
 
 In order to run tornadio2go under `supervisord`_ you must use the `--noreload`
-flag in the command parameter for the ini section of your configuration file.
-`supervisord` does not like it when its supervised programs do a `fork()` and
-the reloader does just that.
+or `--num-process=1` flag in the command parameter for the ini section of your
+configuration file.  `supervisord` does not like it when its supervised
+programs do a `fork()` and the reloader does just that.
+
+Signals
+=======
+
+*Experimental in 1.0.3*
+
+Version 1.0.3 introduces signals which are sent during different stages of
+initialization. The list of signals (in the order that they are sent) are as
+follows:
+
+* `pre_server_start`
+
+* `post_server_start`
+
+* `pre_add_handlers`
+
+* `post_add_handlers`
+
+The signals handlers will all receive the `tornado.web.Application` object in
+the `tornado_app` keyword argument. Unless otherwise indicated, the `sender` is
+always the `tornado.httpserver.HTTPServer` object.
+
+This feature is currently marked as **EXPERIMENTAL** and might change in future
+versions.
 
 .. _TornadIO2: https://github.com/MrJoes/tornadio2
 .. _Tornado: http://www.tornadoweb.org/

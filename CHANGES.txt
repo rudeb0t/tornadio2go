@@ -1,3 +1,4 @@
+v1.0.3, 2013/04/30 - Added Django signals (experimental).
 v1.0.2, 2013/04/17 - Added TORNADO_HANDLERS option support.
 v1.0.1, 2013/04/10 - Fixed packaging and use distribute.
 v1.0.0, 2013/02/07 - Initial release.
