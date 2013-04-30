@@ -16,6 +16,8 @@ import tornado.web
 import tornado.wsgi
 
 from tornadio2go.models import TornadioClient
+from tornadio2go.signals import pre_add_handlers, post_add_handlers, \
+    pre_server_start, post_server_start, pre_ioloop_start
 
 class Command(RunServerCommand):
     option_list = BaseCommand.option_list + (
@@ -119,7 +121,9 @@ class Command(RunServerCommand):
                 address = self.addr,
                 family = self.use_ipv6 and socket.AF_INET6 or socket.AF_INET
             )
+            pre_server_start.send(sender=server, tornado_app=tornado_app)
             server.start(num_process)
+            post_server_start.send(sender=server, tornado_app=tornado_app)
 
             # TornadioRouter constructor calls IOLoop.instance() which causes
             # HTTPServer.start(num_process) to fail if num_process is not 1. So
@@ -133,8 +137,11 @@ class Command(RunServerCommand):
                 tornadio2_router = tornadio2.router.TornadioRouter(TornadioConnection, tornadio2_user_settings)
                 handlers = tornadio2_router.urls + handlers
 
+            pre_add_handlers.send(sender=server, tornado_app=tornado_app)
             tornado_app.add_handlers('.*$', handlers)
+            post_add_handlers.send(sender=server, tornado_app=tornado_app)
 
+            pre_ioloop_start.send(sender=server, tornado_app=tornado_app)
             tornado.ioloop.IOLoop.instance().start()
         except KeyboardInterrupt:
             if shutdown_message:
