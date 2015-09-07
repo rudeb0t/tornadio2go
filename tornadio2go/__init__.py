@@ -1,3 +1,3 @@
-VERSION = '1.0.3'
+VERSION = '1.0.4'
 TORNADIO_MIN_VERSION = '0.0.4'
 NAME = 'TornadIO2Go'
