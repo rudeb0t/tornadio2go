@@ -12,7 +12,7 @@ setup(
     description='Seamlessly run your Django and TornadIO2 project inside Tornado. Like.A.Boss.',
     long_description=open('README.rst').read(),
     install_requires=[
-        'Django >= 1.4.0',
+        'Django >= 1.4.0, < 1.6.0',
         'TornadIO2 >= 0.0.4'
     ]
 )
